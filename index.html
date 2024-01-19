@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator d'étoiles</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <div class="container">
+    <label for="inputNumber">Enter number :</label>
+    <input type="text" id="inputNumber" oninput="validateInput(this)">
+    <button onclick="generateStars()">Generate</button>
+<br><br>
+    <label for="outputStars">Stars :</label>
+    <textarea id="outputStars" readonly></textarea>
+  </div>
+
+  <script>
+    function validateInput(input) {
+      // Permet seulement les chiffres dans le champ de saisie
+      input.value = input.value.replace(/[^0-9]/g, '');
+    }
+
+    function generateStars() {
+      // Récupère la valeur du champ de saisie
+      var inputValue = document.getElementById('inputNumber').value;
+
+      // Convertit la valeur en un nombre entier
+      var numStars = parseInt(inputValue, 10);
+
+      // Vérifie si l'entrée est un nombre valide
+      if (!isNaN(numStars)) {
+        // Génère les étoiles
+        var stars = '';
+        for (var i = numStars; i >= 0; i--) {
+          stars += '*'.repeat(i) + '\n';
+        }
+
+        // Affiche les étoiles dans le champ de texte
+        document.getElementById('outputStars').value = stars;
+      } else {
+        // Affiche un message d'erreur si l'entrée n'est pas un nombre valide
+        alert('Veuillez entrer un nombre valide.');
+      }
+    }
+  </script>
+
+</body>
+</html>
